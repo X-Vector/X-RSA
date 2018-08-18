@@ -1,7 +1,7 @@
 # X-RSA For RSA Attacks :
 - X-RSA contains a many of Attack such as Hasted, Fermat, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack.
 
-- X-RSA helps you in [CTF, Hacking , Peneration Testing , Decryption]
+- X-RSA helps you in [CTF, Hacking , Penetration Testing , Decryption]
 - Written By [Python]
 
 # Installing and Open Tool :
