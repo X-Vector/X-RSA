@@ -134,7 +134,7 @@ if x == "yes" or x == "y":
     d = input(">>> d = ")
     slowprint("\n[+] Please Wait ... \033[95m\n")
     decode = pow(c,d,n)
-    output = hex(decode)[2:].replace('L','')
+    output = (hex(decode)[2:].replace('L','')).decode("hex")
     slowprint("[+] The PlainText Decoded By Hex = \033[95m")
     print(output)
     slowprint("\n[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
