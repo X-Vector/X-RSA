@@ -86,16 +86,21 @@ e = input(">>> e = ")
 
 slowprint("\n[+] Please Wait ... \033[95m\n")
 
-from utilities import mulinv,powinv
+try:
+    from utilities import mulinv,powinv
 
-def hasted(n1,n2,n3,chipher_text_1,chipher_text_2,chipher_text_3,e):
-    n = [n1,n2,n3]
-    a = [chipher_text_1,chipher_text_2,chipher_text_3]
-    sum = 0
-    prod = reduce(lambda a, b: a*b, n)
-    for n_i, a_i in zip(n, a):
-        p = prod / n_i
-        sum += a_i * mulinv(p, n_i) * p
-    return powinv(sum % p,e)
-slowprint("[+] PlainText Decoded By Hex = ")
-print (hex(hasted(N1,N2,N3,C1,C2,C3,e))[2:]).replace('L','')
+    def hasted(n1,n2,n3,chipher_text_1,chipher_text_2,chipher_text_3,e):
+        n = [n1,n2,n3]
+        a = [chipher_text_1,chipher_text_2,chipher_text_3]
+        sum = 0
+        prod = reduce(lambda a, b: a*b, n)
+        for n_i, a_i in zip(n, a):
+            p = prod / n_i
+            sum += a_i * mulinv(p, n_i) * p
+        return powinv(sum % p,e)
+    slowprint("[+] The PlainText = ")
+    decode = (hex(hasted(N1,N2,N3,C1,C2,C3,e))[2:]).replace('L','')
+    print decode.decode("hex")
+    slowprint("\n[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
+except:
+    slowprint("[-] False Attack !! ")
