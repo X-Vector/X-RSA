@@ -7,7 +7,7 @@
 # Installing and Open Tool :
 1 - install tool : 
 ```
-git clone https://github.com/X-Vector/X-RSA
+git clone https://github.com/X-Vector/X-RSA.git
 ```
 2 - Download Requirement
 ```
