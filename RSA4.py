@@ -75,8 +75,10 @@ n = input(">>> n = ")
 d = input(">>> d = ")
 
 slowprint("\n[+] Please Wait ... \033[95m\n")
-
-decode = pow(c,d,n)
-output = hex(decode)[2:]
-slowprint("[+] PlainText Decoded By Hex = ")
-print output.replace('L','')
+try:
+    decode = pow(c,d,n)
+    output = (hex(decode)[2:].replace('L','')).decode("hex")
+    slowprint("[+] The PlainText = ")
+    print output
+except:
+    slowprint("[-] False Attack !! ")
