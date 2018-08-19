@@ -84,32 +84,32 @@ c = input(">>> c = ")
 n = input(">>> n = ")
 e = input(">>> e = ")
 
-factordb = RSA.attacks.factordb(n)
-q = factordb[0]
-p = factordb[1]
-
 slowprint("\n[+] Please Wait ... \033[95m\n")
+try:
+    factordb = RSA.attacks.factordb(n)
+    q = factordb[0]
+    p = factordb[1]
+    phi = (p-1)*(q-1)
+    def egcd(a,b):
+        if a == 0 :
+            return(b,0,1)
+        else:
+            g,y,x = egcd(b%a,a)
+            return (g,x-(b/a)*y,y)
+    def modinv(a,m):
+        g,x,y = egcd(a,m)
+        if g != 1:
+            raise Expection("RSA Hello")
+        else :
+            return x%m
+
+    d = modinv(e,phi)
+    decode = pow(c,d,n)
+    output = (hex(decode)[2:].replace('L','')).decode("hex")
 
 
-phi = (p-1)*(q-1)
-def egcd(a,b):
-    if a == 0 :
-        return(b,0,1)
-    else:
-        g,y,x = egcd(b%a,a)
-        return (g,x-(b/a)*y,y)
-def modinv(a,m):
-    g,x,y = egcd(a,m)
-    if g != 1:
-        raise Expection("RSA Hello")
-    else :
-        return x%m
 
-d = modinv(e,phi)
-decode = pow(c,d,n)
-output = hex(decode)[2:]
-
-
-
-slowprint("[+] PlainText Decoded By Hex = ")
-print(output).replace('L','')
+    slowprint("[+] The PlainText = ")
+    print(output)
+except:
+    slowprint("[-] False Attack !! ")
