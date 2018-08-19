@@ -125,9 +125,14 @@ def inv_pow(c, e):
 N = [N1, N2, N3]
 C = [C1, C2, C3]
 e = len(N)
-a = chinese_remainder(N, C)
-for n, c in zip(N, C):
-    assert a % n == c
-m = inv_pow(a, e)
-slowprint("[+] PlainText Decoded By Hex = ")
-print(hex(m)[2:]).replace('L','')
+try:
+    a = chinese_remainder(N, C)
+    for n, c in zip(N, C):
+        assert a % n == c
+    m = inv_pow(a, e)
+    decode = (hex(m)[2:]).replace('L','')
+    slowprint("[+] The PlainText = ")
+    print decode.decode("hex")
+    slowprint("\n[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
+except:
+    slowprint("[-] False Attack !! ")
