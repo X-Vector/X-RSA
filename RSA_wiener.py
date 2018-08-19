@@ -127,5 +127,16 @@ class Wiener(object):
         print ("[+] d = {}\n".format(self.d))
 
 Wiener(n,e)
-slowprint("\n[+] If You Have The CipherText You Can Get PlainText By Using Attack [10] ... \033[95m")
-slowprint("[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
+
+x = raw_input("Enter [yes / no] To Get PlainText from CipherText : ")
+if x == "yes" or x == "y":
+    c = input(">>> c = ")
+    d = input(">>> d = ")
+    slowprint("\n[+] Please Wait ... \033[95m\n")
+    decode = pow(c,d,n)
+    output = hex(decode)[2:].replace('L','')
+    slowprint("[+] The PlainText Decoded By Hex = \033[95m")
+    print(output)
+    slowprint("\n[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
+else:
+    slowprint("[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
