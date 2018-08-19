@@ -80,7 +80,11 @@ e = input(">>> e = ")
 phi = input(">>> phi = ")
 
 
-slowprint("\n[+] Please Wait ... \033[95m\n")
-n = hex(pow(c,d,n))[2:]
-slowprint("[+] PlainText Decoded By Hex = ")
-print n.replace('L','')
+try:
+    slowprint("\n[+] Please Wait ... \033[95m\n")
+    n = hex(pow(c,d,n))[2:]
+    decode = (n.replace('L','')).decode("hex")
+    slowprint("[+] The PlainText = ")
+    print decode
+except:
+    slowprint("[-] False Attack !! ")
