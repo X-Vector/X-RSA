@@ -79,13 +79,15 @@ c = input(">>> c = ")
 p = input(">>> p = ")
 q = input(">>> q = ")
 e = input(">>> e = ")
-n = p * q
 slowprint("\n[+] Please Wait ... \033[95m\n")
+try:
+    n = p*q
+    x = (p-1)*(q-1)
+    d = gmpy.invert(e,x)
+    m = hex(pow(c,d,n))[2:]
+    decode = m.decode('hex')
+    slowprint("[+] The PlainText = ")
+    print(decode)
 
-n = p*q
-x = (p-1)*(q-1)
-d = gmpy.invert(e,x)
-m = hex(pow(c,d,n))[2:]
-decode = m.decode('hex')
-slowprint("[+] Flag = ")
-print(decode)
+except:
+    slowprint("[-] False Attack !! ")
