@@ -22,4 +22,4 @@ Python Attack.py
 ![X-RSA](https://c.top4top.net/p_96007iik1.png "X-RSA in Action")
 
 - Coded By X-Vector
-- [Facebook](https://www.facebook.com/X.Vector1) - [Linkedin](https://www.linkedin.com/in/mohamed-abdelfatah-509b01149/) - [Twitter](https://twitter.com/@XVector11)
+- [Facebook](https://www.facebook.com/X.Vector1) - [Linkedin](https://www.linkedin.com/in/x-vector/) - [Twitter](https://twitter.com/@XVector11)
