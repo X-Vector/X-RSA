@@ -15,7 +15,7 @@ pip install -r requirement.txt
 ```
 3 - Open Tool :
 ```
-Python Attack.py
+python Attack.py
 ```
 # Screenshots :
 
