@@ -11,6 +11,7 @@ git clone https://github.com/X-Vector/X-RSA.git
 ```
 2 - Download Requirement
 ```
+apt install libgmp-dev libmpfr-dev libmpc-dev
 pip install -r requirement.txt
 ```
 3 - Open Tool :
