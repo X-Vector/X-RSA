@@ -1,7 +1,10 @@
 # X-RSA For RSA Attacks :
-- X-RSA Version 0.2 contains a many of attack types such as Hasted, Fermat, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack. 
+- X-RSA V0.2 contains a many of attack types such as Hasted, Fermat, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack. 
+
 - New Attack Added To X-RSA V0.2 And Fixing Many Error in V0.1
+
 - X-RSA helps you in [CTF, Hacking , Penetration Testing , Decryption]
+
 - Written By [Python]
 
 # Installing and Open Tool :
