@@ -3,7 +3,7 @@ import platform,os
 from urllib2 import *
 from platform import system
 def slowprint(s):
-    for c in s + '\n':
+    for c in s :
         sys.stdout.write(c)
         sys.stdout.flush()
         time.sleep(4. / 100)
