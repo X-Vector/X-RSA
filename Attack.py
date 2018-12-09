@@ -62,7 +62,7 @@ _____       ________________                  _____      _____
  |    |   |    | |     | | |     || |   ||    | |    | |     | |     |
  |____|   |____| |_____|/ \|_____| \|___||____|/      \|_____|\|_____|
   %s%s
-[ Version : 0.1 ]\033[92m
+[ Version : 0.2 ]\033[92m
 [ Author  : X-Vector ]\033[96m
 [ Github  : github.com/X-Vector ]\033[93m
 [ Twitter : twitter.com/@XVector11 ]\033[95m
@@ -74,19 +74,23 @@ banner()
 print("""
 [1] - Attack(c,n,e) \033[92m
 [2] - Attack(c,p,q,e) \033[96m
-[3] - Attack(c,n,d,e,phi) \033[93m
-[4] - Attack(c1,c2,c3,n1,n2,n3) \033[95m    [ Hasted ]
-[5] - Attack(c1,c2,c3,n1,n2,n3,e) \033[0m  [ Hasted2 ]
-[6] - Attack(n,limit) \033[92m              [ Fermat ]
-[7] - Attack(c1,c2,e1,e2,n) \033[96m        [ Common Modulus ]
-[8] - Attack(c,p,q,dp,dq) \033[93m          [ Chinese Remainder Theorem ]
-[9] - Attack(n,e) \033[95m                  [ Wiener ]
-[10] - Attack(c,n,d)\033[0m
-[11] - Get(n,p,q,d,e) From PublicKey
-\033[92m[0] - To Exit \033[92m
-""")
+[3] - Attack (c,n,e,{p or q})
+[4] - Attack (c,n,e,dp)
+[5] - Attack(c,n,d,e,phi) \033[93m
+[6] - Attack(c1,c2,c3,n1,n2,n3) \033[95m    [ Hasted ]
+[7] - Attack(c1,c2,c3,n1,n2,n3,e) \033[0m  [ Hasted2 ]
+[8] - Attack(n,limit) \033[92m              [ Fermat ]
+[9] - Attack(c1,c2,e1,e2,n) \033[96m        [ Common Modulus ]
+[10] - Attack(c,p,q,dp,dq) \033[93m          [ Chinese Remainder Theorem ]
+[11] - Attack(n,e) \033[95m                  [ Wiener ]
+[12] - Attack(c,n,d)\033[0m
+[13] - Attack(c,d,n,e)\033[92m
+[14] - Attack(c,n,e) \033[93m                [ Multi Prime Number ]
+[15] - Attack(c,e = 3)\033[0m
+[16] - Get(n,p,q,d,e) From PublicKey\033[96m
+[0] - Exit \033[92m
+    """)
 x = int(input(">>> "))
-
 if x == 1:
     os.system(clear)
     import RSA
@@ -95,29 +99,44 @@ elif x == 2:
     import RSA2
 elif x == 3:
     os.system(clear)
-    import RSA3
+    import RSA6
 elif x == 4:
     os.system(clear)
-    import RSA_hasted
+    import RSA7
 elif x == 5:
     os.system(clear)
-    import RSA_hasted2
+    import RSA3
 elif x == 6:
     os.system(clear)
-    import RSA_fermat
+    import RSA_hasted
 elif x == 7:
     os.system(clear)
-    import RSA_common_modulus
+    import RSA_hasted2
 elif x == 8:
     os.system(clear)
-    import RSA_chinese_remainder_theorem
+    import RSA_fermat
 elif x == 9:
     os.system(clear)
-    import RSA_wiener
+    import RSA_common_modulus
 elif x == 10:
     os.system(clear)
-    import RSA4
+    import RSA_chinese_remainder_theorem
 elif x == 11:
+    os.system(clear)
+    import RSA_wiener
+elif x == 12:
+    os.system(clear)
+    import RSA4
+elif x == 13:
+    os.system(clear)
+    import RSA5
+elif x == 14:
+    os.system(clear)
+    import RSA_multiPrime1
+elif x == 15:
+    os.system(clear)
+    import RSA8
+elif x == 16:
     os.system(clear)
     import public
 else:
