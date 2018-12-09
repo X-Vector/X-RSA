@@ -3,7 +3,7 @@ import platform,os
 from urllib2 import *
 from platform import system
 def slowprint(s):
-    for c in s + '\n':
+    for c in s :
         sys.stdout.write(c)
         sys.stdout.flush()
         time.sleep(4. / 100)
@@ -56,7 +56,7 @@ _____       ________________                  _____      _____
  |    |   |    | |     | | |     || |   ||    | |    | |     | |     |
  |____|   |____| |_____|/ \|_____| \|___||____|/      \|_____|\|_____|
   %s%s
-[ Version : 0.1 ]\033[92m
+[ Version : 0.2 ]\033[92m
 [ Author  : X-Vector ]\033[96m
 [ Github  : github.com/X-Vector ]\033[93m
 [ Twitter : twitter.com/@XVector11 ]\033[95m
@@ -114,7 +114,7 @@ class Comod(object):
       print "\n\t[+] Decimal plaintext: ",res,"\n"
       try:
         plaintext = codecs.decode(hex(res)[2:].replace('L',''))
-        print "\t[+] Interpreted plaintext: ",plaintext,"\n"
+        print "\t[+] The plaintext = ",plaintext
       except:
-        print "\t[-] The plaintext isn't interpretable\n"
+        slowprint("\t[-] Can't Get The PlainText\n")
 Comod(n, e1, e2, c1, c2)
