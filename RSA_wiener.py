@@ -77,7 +77,6 @@ c = 3053573042079033965637692524337989421163076014211553867993925915238755477729
 
 n = input(">>> n = ")
 e = input(">>> e = ")
-c = input(">>> c = ")
 
 slowprint("\n[+] Please Wait ... \033[95m\n")
 
@@ -130,8 +129,15 @@ def wiener(n, e):
     exit(0)
 
 d = wiener(n,e)
-slowprint("[+] Getting PlainText ... \033[95m\n")
-decode = pow(c,d,n)
-output = (hex(decode)[2:].replace('L','')).decode("hex")
-slowprint("[+] The PlainText = \033[95m")
-print output
+print "\nd = ",d
+check = raw_input("\nYou Have Cipher [y/n] : ")
+if check == "y" or check == "yes":
+    c = input(">>> c = ")
+    slowprint("[+] Getting PlainText ... \033[92m\n")
+    decode = pow(c,d,n)
+    output = (hex(decode)[2:].replace('L','')).decode("hex")
+    slowprint("[+] The PlainText = \033[92m")
+    print output
+else :
+    slowprint("[+] Thanx For Using X-RSA \033[95m")
+    exit()
