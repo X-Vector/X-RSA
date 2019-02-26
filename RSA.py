@@ -74,6 +74,13 @@ banner()
 
 import binascii
 import gmpy2
+import requests
+from factordb import *
+
+def factordb(n):
+    f =  FactorDB(n)
+    f.connect()
+    return f.get_factor_list()
 
 
 
@@ -107,7 +114,7 @@ try:
         print(msg.decode())
     else:
         slowprint("\n[+] Please Wait ... \033[95m\n")
-        factordb = RSA.attacks.factordb(n)
+        factordb = factordb(n)
         q = factordb[0]
         p = factordb[1]
         phi = (p-1)*(q-1)
