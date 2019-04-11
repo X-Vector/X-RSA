@@ -78,22 +78,20 @@ n = 6423132408480640149750439343086582424473124851523426736107568595350901037046
 dp = 17765378008759755288183210466105878526943875374957170036175281330288884608317141953683920408636506981101765935449140323585600732241535721917282237462133813
 c = 147903288008907053469880199469959588903705520519775597541160700501753344741954421604588338524905987922631822425828587114084662512860181022047137469441292833823381362238861070683420786510831001513730638949486694641768638258876688738949817816449109334961820861920165271653627904957302093274915248851406573361863
 """
-c = input(">>> c = ")
-n = input(">>> n = ")
-e = input(">>> e = ")
-dp = input(">>> dp = ")
 
-# dP = (1/e) mod (p-1)
-mp = (dp * e) - 1 #mp is multiple of p-1
-for i in range(2,1000000):
-   p = (mp / i) + 1
-   if n % p == 0:
-       break
-#print "p = ",p
-q = n/p
-#print "q = ",q
-slowprint("\n[+] Please Wait ... \033[95m\n")
 try:
+    c = int(raw_input(">>> c = "))
+    n = int(raw_input(">>> n = "))
+    e = int(raw_input(">>> e = "))
+    dp = int(raw_input(">>> dp = "))
+
+    mp = (dp * e) - 1
+    for i in range(2,1000000):
+       p = (mp / i) + 1
+       if n % p == 0:
+           break
+    q = n/p
+    slowprint("\n[+] Please Wait ... \033[95m\n")
     phi = (p-1)*(q-1)
     def egcd(a,b):
         if a == 0 :
@@ -113,5 +111,12 @@ try:
     output = (hex(decode)[2:].replace('L','')).decode("hex")
     slowprint("[+] The PlainText = ")
     print(output)
+    
+except ValueError:
+    slowprint("\n[-] c,n,e,p Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
 except:
-	slowprint("[-] False Attack !! ")
+    slowprint("\n[-] False Attack !")
