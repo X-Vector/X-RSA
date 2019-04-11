@@ -65,56 +65,55 @@ _____       ________________                  _____      _____
 
     """ % (R, W,R))
 banner()
-c1 = input(">>> c1 = ")
-c2 = input(">>> c2 = ")
-e1 = input(">>> e1 = ")
-e2 = input(">>> e2 = ")
-n  = input(">>> n = ")
+try:
+    import gmpy2
+    from Crypto.Util.number import *
+    c1 = int(raw_input(">>> c1 = "))
+    c2 = int(raw_input(">>> c2 = "))
+    e1 = int(raw_input(">>> e1 = "))
+    e2 = int(raw_input(">>> e2 = "))
+    n = int(raw_input(">>> n = "))
 
-slowprint("\n[+] Please Wait ... \033[95m\n")
+    slowprint("\n[+] Please Wait ... \033[95m\n")
 
-
-from sys import setrecursionlimit
-import codecs
-class Comod(object):
-    def accueil(self):
-        slowprint("[+] Getting info ... ")
-    setrecursionlimit(1000000)
-    def xgcd(self, a, b):
-      if a == 0:
+    def egcd(a, b):
+      if (a == 0):
         return (b, 0, 1)
       else:
-        gcd, u, v = self.xgcd(b % a, a)
-        return (gcd, v - (b // a) * u, u)
-    def modinv(self, a, n):
-      g, x, y = self.xgcd(a, n)
-      return x % n
-    def pow_mod(self, a, b, n):
-      number = 1
-      while b:
-        if b & 1:
-          number = number * a % n
-        b >>= 1
-        a = a * a % n
-      return number
-    def __init__(self, n, e1, e2, c1, c2):
+        g, y, x = egcd(b % a, a)
+        return (g, x - (b // a) * y, y)
 
-      self.accueil()
-      egcd = self.xgcd(e1, e2)
-      u, v = egcd[1], egcd[2]
-      if u >= 0:
-        p1 = self.pow_mod(c1,u,n)
-      else:
-        p1 = self.modinv(self.pow_mod(c1,-u,n),n)
-      if v >= 0:
-        p2 = self.pow_mod(c2,v,n)
-      else:
-        p2 = self.modinv(self.pow_mod(c2,(-v),n),n)
-      res = (p1 * p2) % n
-      print "\n\t[+] Decimal plaintext: ",res,"\n"
-      try:
-        plaintext = codecs.decode(hex(res)[2:].replace('L',''))
-        print "\t[+] The plaintext = ",plaintext
-      except:
-        slowprint("\t[-] Can't Get The PlainText\n")
-Comod(n, e1, e2, c1, c2)
+    # Calculates a^{b} mod n when b is negative
+    def neg_pow(a, b, n):
+    	assert b < 0
+    	assert GCD(a, n) == 1
+    	res = int(gmpy2.invert(a, n))
+    	res = pow(res, b*(-1), n)
+    	return res
+
+
+    def common_modulus(e1, e2, n, c1, c2):
+    	g, a, b = egcd(e1, e2)
+    	if a < 0:
+    		c1 = neg_pow(c1, a, n)
+    	else:
+    		c1 = pow(c1, a, n)
+    	if b < 0:
+    		c2 = neg_pow(c2, b, n)
+    	else:
+    		c2 = pow(c2, b, n)
+    	ct = c1*c2 % n
+    	m = int(gmpy2.iroot(ct, g)[0])
+    	return long_to_bytes(m)
+    slowprint("[+] The PlainText = ")
+    print common_modulus(e1, e2, n, c1, c2)
+except ImportError:
+    slowprint("\n[-] Module Not Setup")
+except ValueError:
+    slowprint("\n[-] e1, e2, n, c1, c2 Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
+except:
+    slowprint("\n[-] False Attack !")
