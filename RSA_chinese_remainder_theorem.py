@@ -75,15 +75,17 @@ dp = 554065502862202193442930628793777529195562330896520838458200985737605358357
 dq = 9066897320308834206952359399737747311983309062764178906269475847173966073567988170415839954996322314157438770225952491560052871464136163421892050057498651
 """
 
-c = input(">>> c = ")
-p = input(">>> p = ")
-q = input(">>> q = ")
-dp = input(">>> dp = ")
-dq = input(">>> dq = ")
 
-slowprint("\n[+] Please Wait ... \033[95m\n")
+
 
 try:
+    c = int(raw_input(">>> c = "))
+    p = int(raw_input(">>> p = "))
+    q = int(raw_input(">>> q = "))
+    dp = int(raw_input(">>> dp = "))
+    dp = int(raw_input(">>> dq = "))
+    slowprint("\n[+] Please Wait ... \033[95m\n")
+
     def egcd(a,b):
         if a == 0:
             return (b, 0, 1)
@@ -105,5 +107,11 @@ try:
     decode = hex(chinese_remainder_theorem(p,q,dp,dq,c))[2:].replace('L','')
     slowprint("[+] The PlainText = ")
     print decode.decode("hex")
+except ValueError:
+    slowprint("\n[-] c,n,e,p Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
 except:
-    slowprint("[-] False Attack !! \n")
+    slowprint("\n[-] False Attack !")
