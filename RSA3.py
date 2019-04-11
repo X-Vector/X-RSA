@@ -73,18 +73,23 @@ banner()
 #e = 65537
 #phi = 43210326036290106251088810298667915702007744567467854988107937233622821671752930583378558808381197036542903396534337305723496107154050324953536530993744267386008120658910242143992656773360792182698142273761182047011119261779988377408208858109503177413194541524543447827777831409903664749520527375514748678461684001179681025836243272641520046001108394411608315423967170123709569701951917513847951924936347574671212789694222728087028519090194131250999358518159691864169187723815719657688598576820104123456547706995794001020837756695923476582226622677087727699446323459489485731800382017980557710365098279949382831681952
 
-c = input(">>> c = ")
-n = input(">>> n = ")
-d = input(">>> d = ")
-e = input(">>> e = ")
-phi = input(">>> phi = ")
-
 
 try:
+    c = int(raw_input(">>> c = "))
+    n = int(raw_input(">>> n = "))
+    d = int(raw_input(">>> d = "))
+    e = int(raw_input(">>> e = "))
+    phi = int(raw_input(">>> phi = "))
     slowprint("\n[+] Please Wait ... \033[95m\n")
     n = hex(pow(c,d,n))[2:]
     decode = (n.replace('L','')).decode("hex")
     slowprint("[+] The PlainText = ")
     print decode
+except ValueError:
+    slowprint("\n[-] c,n,d,e,phi Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
 except:
-	slowprint("\n[!] False Attack ... \033[95m\n")
+    slowprint("\n[-] False Attack !")
