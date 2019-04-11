@@ -76,18 +76,6 @@ banner()
 # C3 = 55139001168534905791033093049281485849516290567638780139733282880064346293967470884523842813679361232423330290836063248352131025995684341143337417237119663347561882637003640064860966432102780676449991773140407055863369179692136108534952624411669691799286623699981636439331427079183234388844722074263884842748
 
 
-C1 = input(">>> c1 = ")
-C2 = input(">>> c2 = ")
-C3 = input(">>> c3 = ")
-N1 = input(">>> n1 = ")
-N2 = input(">>> n2 = ")
-N3 = input(">>> n3 = ")
-
-
-slowprint("\n[+] Please Wait ... \033[95m\n")
-
-import functools
-import itertools
 
 def chinese_remainder(n, a):
     sum = 0
@@ -122,10 +110,23 @@ def inv_pow(c, e):
     assert pow(m, e) == c
     return m
 
-N = [N1, N2, N3]
-C = [C1, C2, C3]
-e = len(N)
+
 try:
+    import functools
+    import itertools
+
+    C1 = int(raw_input(">>> c1 = "))
+    C2 = int(raw_input(">>> c2 = "))
+    C3 = int(raw_input(">>> c3 = "))
+    N1 = int(raw_input(">>> n1 = "))
+    N2 = int(raw_input(">>> n2 = "))
+    N3 = int(raw_input(">>> n3 = "))
+    N = [N1, N2, N3]
+    C = [C1, C2, C3]
+    e = len(N)
+    print "e = ",e
+    slowprint("\n[+] Please Wait ... \033[95m\n")
+
     a = chinese_remainder(N, C)
     for n, c in zip(N, C):
         assert a % n == c
@@ -133,6 +134,13 @@ try:
     decode = (hex(m)[2:]).replace('L','')
     slowprint("[+] The PlainText = ")
     print decode.decode("hex")
-    slowprint("\n[+] Thanx For Using X-RSA Tool <3  \033[95m\n")
+except ValueError:
+    slowprint("\n[-] c,p,q,e Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
+except ImportError:
+    slowprint("\n[-] Module Not Setup")
 except:
-    slowprint("[-] False Attack !! ")
+    slowprint("\n[-] False Attack !")
