@@ -1,4 +1,3 @@
-# p , q , e , c is required
 import sys
 import platform,os
 from urllib2 import *
@@ -67,7 +66,6 @@ _____       ________________                  _____      _____
     """ % (R, W,R))
 banner()
 
-import gmpy
 
 
 #c = 29846947519214575162497413725060412546119233216851184246267357770082463030225
@@ -75,12 +73,14 @@ import gmpy
 #q = 296805874594538235115008173244022912163
 #e = 3
 
-c = input(">>> c = ")
-p = input(">>> p = ")
-q = input(">>> q = ")
-e = input(">>> e = ")
-slowprint("\n[+] Please Wait ... \033[95m\n")
+
 try:
+    import gmpy
+    c = int(raw_input(">>> c = "))
+    p = int(raw_input(">>> p = "))
+    q = int(raw_input(">>> q = "))
+    e = int(raw_input(">>> e = "))
+    slowprint("\n[+] Please Wait ... \033[95m\n")
     n = p*q
     x = (p-1)*(q-1)
     d = gmpy.invert(e,x)
@@ -89,5 +89,13 @@ try:
     slowprint("[+] The PlainText = ")
     print(decode)
 
+except ImportError:
+    slowprint("\n[-] Module Not Setup")
+except ValueError:
+    slowprint("\n[-] c,p,q,e Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
 except:
-    slowprint("[-] False Attack !! ")
+    slowprint("\n[-] False Attack !")
