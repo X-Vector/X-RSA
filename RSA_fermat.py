@@ -66,8 +66,8 @@ _____       ________________                  _____      _____
     """ % (R, W,R))
 banner()
 
-n = input(">>> n = ")
-limit = input(">>> limit = ")
+n = int(raw_input(">>> n = "))
+limit = int(raw_input(">>> limit = "))
 
 slowprint("\n[+] Please Wait ... \033[95m\n")
 
