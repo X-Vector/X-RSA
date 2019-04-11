@@ -70,15 +70,23 @@ banner()
 #d = 108642162821084938181507878056324903120999504739411128372202198922197750954973
 #c = 305357304207903396563769252433798942116307601421155386799392591523875547772911646596463903009990423488430360340024642675941752455429625701977714941340413671092668556558724798890298527900305625979817567613711275466463556061436226589272364057532769439646178423063839292884115912035826709340674104581566501467826782079168130132642114128193813051474106526430253192254354664739229317787919578462780984845602892238745777946945435746719940312122109575086522598667077632
 
-c = input(">>> c = ")
-n = input(">>> n = ")
-d = input(">>> d = ")
 
-slowprint("\n[+] Please Wait ... \033[95m\n")
+
+
 try:
+    c = int(raw_input(">>> c = "))
+    n = int(raw_input(">>> n = "))
+    d = int(raw_input(">>> d = "))
+    slowprint("\n[+] Please Wait ... \033[95m\n")
     decode = pow(c,d,n)
     output = (hex(decode)[2:].replace('L','')).decode("hex")
     slowprint("[+] The PlainText = ")
     print output
+except ValueError:
+    slowprint("\n[-] c,n,d,e,phi Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
 except:
-    slowprint("[-] False Attack !! ")
+    slowprint("\n[-] False Attack !")
