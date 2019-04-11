@@ -79,31 +79,37 @@ c =  146996329142899843582105820759093096088176196157641224095145778502530331312
 e = 65537
 n = 23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239
 """
-c = input(">>> c = ")
-n = input(">>> n = ")
-e = input(">>> e = ")
-p = input(">>> p or q = ")
+try:
+    c = int(raw_input(">>> c = "))
+    n = int(raw_input(">>> n = "))
+    e = int(raw_input(">>> e = "))
+    p = int(raw_input(">>> p = "))
+    slowprint("\n[+] Please Wait ... \033[95m\n")
+    q = n/p
+    phi = (p-1)*(q-1)
+    def egcd(a,b):
+        if a == 0 :
+            return(b,0,1)
+        else:
+            g,y,x = egcd(b%a,a)
+            return (g,x-(b/a)*y,y)
+    def modinv(a,m):
+        g,x,y = egcd(a,m)
+        if g != 1:
+            raise Expection("RSA Hello")
+        else :
+            return x%m
+    d = modinv(e,phi)
+    decode = pow(c,d,n)
+    output = (hex(decode)[2:].replace('L','')).decode("hex")
+    slowprint("[+] The PlainText = ")
+    print(output)
 
-
-slowprint("\n[+] Please Wait ... \033[95m\n")
-
-q = n/p
-phi = (p-1)*(q-1)
-def egcd(a,b):
-    if a == 0 :
-        return(b,0,1)
-    else:
-        g,y,x = egcd(b%a,a)
-        return (g,x-(b/a)*y,y)
-def modinv(a,m):
-    g,x,y = egcd(a,m)
-    if g != 1:
-        raise Expection("RSA Hello")
-    else :
-        return x%m
-
-d = modinv(e,phi)
-decode = pow(c,d,n)
-output = (hex(decode)[2:].replace('L','')).decode("hex")
-slowprint("[+] The PlainText = ")
-print(output)
+except ValueError:
+    slowprint("\n[-] c,n,e,p Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
+except:
+    slowprint("\n[-] False Attack !")
