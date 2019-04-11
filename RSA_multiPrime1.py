@@ -44,7 +44,6 @@ else:
 
 def banner():
     print("""%s
-
 _____       ________________                  _____      _____
 \    \     /    /\          \            _____\    \   /      |_
  \    |   |    /  \    /\    \          /    / \    | /         \\
@@ -62,80 +61,63 @@ _____       ________________                  _____      _____
 [ Twitter : twitter.com/@XVector11 ]\033[95m
 [ Facebook: facebook.com/X.Vector1 ]\033[95m
 [ GreeteZ : Karem Ali ]\033[94m
-
     """ % (R, W,R))
 banner()
 
+"""
+c= 3821925911648555519353747434606743159593808677487039861592438384426669998207423450606829031692403202928227703884307291926528640413305346863805555214851644456742958636273721157021584443312591620736285469414067076228984358550669307967587995994219000349054979046909041864106400708453105658165917613077273501
+n= 6311257310749529896994764164885908074730315623107218148732436180339784730655096846277587690299624960654670853389184027362495475005388709090759335907428646246751073917955576737663877861242491426053238800688758573959939180213510980211538490409598005851282273664989880554327678869807688158210471903939248513
+e= 65537
+prime = [2160890461,2247289019,2250778319,2442210431,2458778093,2534226749,2535292559,2546035901,2651829007,2690421313,2737511971,2807722121,2985359177,3074912623,3142693039,3144852421,3159476069,3166527541,3269492927,3328687379,3493484429,3505945799,3538145749,3610828651,3699668617,3715792519,4036077043,4058968889,4089517513,4116792439,4262477123,4291039453]
+"""
 
-from Crypto.PublicKey import RSA
-from Crypto.Util import asn1
-import binascii
-primes = []
-def prime_factors(n):
-    i = 2
-    while i * i <= n:
-        if n % i:
-            i += 1
-        else:
-            n //= i
-            primes.append(i)
-    if n > 1:
-        primes.append(n)
-    return primes
+try:
+    from factordb import *
+    import binascii
+    c = int(raw_input(">>> c = "))
+    n = int(raw_input(">>> n = "))
+    e = int(raw_input(">>> e = "))
+    def factordb(n):
+          f =  FactorDB(n)
+          f.connect()
+          return f.get_factor_list()
+    prime = []
+    for i in factordb(n):
+        prime.append(i)
+    phi = 1
+    for i in prime:
+        phi *= i-1
+    def egcd(a, b):
+        if a == 0:
+            return (b, 0, 1)
+        g, y, x = egcd(b%a,a)
+        return (g, x - (b//a) * y, y)
+    def modinv(a, m):
+        g, x, y = egcd(a, m)
+        if g != 1:
+            raise Exception('No modular inverse')
+        return x%m
+    d = modinv(e, phi)
+    m = pow(c, d, n)
+    def hex_pair(x):
+        return ('0' * (len(x) % 2)) + x
+    m_hex = '{:x}'.format(m)
+    m_hex = hex_pair(m_hex)
+    msg = binascii.unhexlify(m_hex)
+    slowprint("\n[+] The PlainText = ")
+    print(msg.decode(errors="ignore"))
 
-
-c = input(">>> c = ")
-n = input(">>> n = ")
-e = input(">>> e = ")
-
-#https://www.alpertron.com.ar/ECM.HTM
-
-#Example
-
-#e=65537
-#c=948626122185577940383278469624490186926710623520188126435501983438183336907186255794618530332289368021291789118954846772779855308711280972165698348170051078399678590370050111906031923460860172422708816752545784573579942145045344015318568999211937934532123400243017531300488990627956390410869348218289952
-#primes = [2162771687,2180377501,2181902579,2183410837,2234829049,2259158687,2366491411,2494545509,2528730847,2591025083,2603976511,2691605771,2714412037,2808388853,2847171653,2870886637,2890555183,2939087189,3000625669,3175105811,3226441579,3265841311,3499273711,3544821197,3611944027,3677851391,3692380933,3696854989,4067996287,4133178029,4212919157,4224110131]
-
-os.system(clear)
-banner()
-
-print("[!!] Ok , Now :\n1 - You Can Factorize (n) Auto With X-RSA \t[ it Take Much Time ]\n2 - You Can Factorize (n) in This Site https://www.alpertron.com.ar/ECM.HTM \t [ Recommend ]\n")
-check = int(input(">>> "))
-if check == 1:
-    slowprint("\n[+] Please Wait ... \033[95m")
-    slowprint("\n[+] it Take Much Time ... \033[95m\n")
-    prime_factors(n)
-elif check == 2:
-    slowprint("\n[+] How Many Prime Number =  \033[95m\n")
-    count = int(input(">>> "))
-    print "\n"
-    for i in range(count):
-        print "Enter The",(i+1),"Number"
-        i = int(input(">>> "))
-        primes.append(i)
-
-phi = 1
-for prime in primes:
-    phi *= (prime-1)
-
-
-def egcd(a, b):
-    if a == 0:
-        return (b, 0, 1)
-    g, y, x = egcd(b%a,a)
-    return (g, x - (b//a) * y, y)
-
-def modinv(a, m):
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception('No modular inverse')
-    return x%m
-d = modinv(e, phi)
-m = pow(c, d, n)
-def hex_pair(x):
-    return ('0' * (len(x) % 2)) + x
-m_hex = '{:x}'.format(m)
-m_hex = hex_pair(m_hex)
-msg = binascii.unhexlify(m_hex)
-slowprint("\n[+] The PlainText = ")
-print(msg.decode(errors="ignore"))
+except IndexError:
+    slowprint("[-] Sorry Can't Factorize n ")
+except ImportError:
+    slowprint("\n[-] Module Not Setup")
+except ValueError:
+    slowprint("\n[-] c,n,e Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except Exception:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
+except:
+    slowprint("[-] False Attack !")
