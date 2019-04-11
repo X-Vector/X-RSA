@@ -50,7 +50,6 @@ else:
 
 def banner():
     print("""%s
-
 _____       ________________                  _____      _____
 \    \     /    /\          \            _____\    \   /      |_
  \    |   |    /  \    /\    \          /    / \    | /         \\
@@ -68,21 +67,8 @@ _____       ________________                  _____      _____
 [ Twitter : twitter.com/@XVector11 ]\033[95m
 [ Facebook: facebook.com/X.Vector1 ]\033[95m
 [ GreeteZ : Karem Ali ]\033[94m
-
     """ % (R, W,R))
 banner()
-
-import binascii
-import gmpy2
-import requests
-from factordb import *
-
-def factordb(n):
-    f =  FactorDB(n)
-    f.connect()
-    return f.get_factor_list()
-
-
 
 # Example 1 :
 #c = 194048013822218245260658018019940874060627700835842604475987702337533801266490182061968998210807564778328557627772974110046885380635225974269865976518335375789734689098164529086561756412074742698644530189076800227300946408167039318949544794351233987752575608106800908043533012088081995031010618521695843625062
@@ -94,15 +80,22 @@ def factordb(n):
 #e = 3
 #c = 74802199268254280440493690700608296874229186682164386879225634595063352871356558051619716745745659385094914838131944342112615526475056433710891149995541243955498341403563518984577892267288643941
 
-
-c = input(">>> c = ")
-n = input(">>> n = ")
-e = input(">>> e = ")
-
-
-gmpy2.get_context().precision=200
-m = gmpy2.iroot(c, e)[0]
 try:
+    import binascii
+    import gmpy2
+    import requests
+    from factordb import *
+
+    def factordb(n):
+        f =  FactorDB(n)
+        f.connect()
+        return f.get_factor_list()
+
+    gmpy2.get_context().precision=200
+    m = gmpy2.iroot(c, e)[0]
+    c = int(raw_input(">>> c = "))
+    n = int(raw_input(">>> n = "))
+    e = int(raw_input(">>> e = "))
     if pow(m,e) == c:
         slowprint("\n[+] Please Wait ... \033[95m\n")
         def hex_pair(x):
@@ -141,5 +134,13 @@ try:
 except IndexError:
     slowprint("[-] Sorry Can't Factorize n :( ")
     slowprint("\n[!] Try To Use MultiPrime Attack ")
+except ImportError:
+    slowprint("\n[-] Module Not Setup")
+except ValueError:
+    slowprint("\n[-] e1, e2, n, c1, c2 Must Be Integar Number")
+except AssertionError:
+    slowprint("\n[-] Wrong Data")
+except KeyboardInterrupt:
+    exit()
 except:
-    slowprint("[-] False Attack !! ")
+    slowprint("\n[-] False Attack !")
