@@ -72,18 +72,13 @@ prime = [2160890461,2247289019,2250778319,2442210431,2458778093,2534226749,25352
 """
 
 try:
-    from factordb import *
+    from fator_multi_prime import *
     import binascii
     c = int(raw_input(">>> c = "))
     n = int(raw_input(">>> n = "))
     e = int(raw_input(">>> e = "))
-    def factordb(n):
-          f =  FactorDB(n)
-          f.connect()
-          return f.get_factor_list()
-    prime = []
-    for i in factordb(n):
-        prime.append(i)
+    slowprint("\n[+] Please Wait ...\n ")
+    prime = primefactors(n)
     phi = 1
     for i in prime:
         phi *= i-1
