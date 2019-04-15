@@ -135,7 +135,7 @@ try:
     slowprint("[+] The PlainText = ")
     print decode.decode("hex")
 except ValueError:
-    slowprint("\n[-] c,p,q,e Must Be Integar Number")
+    slowprint("\n[-] c1,c2,c3,n1,n2,n3 Must Be Integar Number")
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
