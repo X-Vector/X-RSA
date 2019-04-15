@@ -83,7 +83,7 @@ try:
     slowprint("[+] The PlainText = ")
     print output
 except ValueError:
-    slowprint("\n[-] c,n,d,e,phi Must Be Integar Number")
+    slowprint("\n[-] c,n,d Must Be Integar Number")
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
