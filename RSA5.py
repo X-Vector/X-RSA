@@ -152,7 +152,7 @@ try:
     premRSA(n,e,d,c)
 
 except ValueError:
-    slowprint("\n[-] c,p,q,e Must Be Integar Number")
+    slowprint("\n[-] c,n,d,e Must Be Integar Number")
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
