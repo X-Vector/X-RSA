@@ -144,11 +144,11 @@ def floorSqrt(n):
 
 
 try:
-    slowprint("\n[+] Please Wait ... \033[95m\n")
     c = int(raw_input(">>> c = "))
     n = int(raw_input(">>> n = "))
     e = int(raw_input(">>> e = "))
     d = int(raw_input(">>> d = "))
+    slowprint("\n[+] Please Wait ... \033[95m\n")
     premRSA(n,e,d,c)
 
 except ValueError:
