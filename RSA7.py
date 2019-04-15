@@ -111,9 +111,9 @@ try:
     output = (hex(decode)[2:].replace('L','')).decode("hex")
     slowprint("[+] The PlainText = ")
     print(output)
-    
+
 except ValueError:
-    slowprint("\n[-] c,n,e,p Must Be Integar Number")
+    slowprint("\n[-] c,n,e,dp Must Be Integar Number")
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
