@@ -85,17 +85,17 @@ try:
     import gmpy2
     import requests
     from factordb import *
-
     def factordb(n):
         f =  FactorDB(n)
         f.connect()
         return f.get_factor_list()
 
-    gmpy2.get_context().precision=200
-    m = gmpy2.iroot(c, e)[0]
     c = int(raw_input(">>> c = "))
     n = int(raw_input(">>> n = "))
     e = int(raw_input(">>> e = "))
+    gmpy2.get_context().precision=200
+    m = gmpy2.iroot(c, e)[0]
+
     if pow(m,e) == c:
         slowprint("\n[+] Please Wait ... \033[95m\n")
         def hex_pair(x):
@@ -137,7 +137,7 @@ except IndexError:
 except ImportError:
     slowprint("\n[-] Module Not Setup")
 except ValueError:
-    slowprint("\n[-] e1, e2, n, c1, c2 Must Be Integar Number")
+    slowprint("\n[-] c, e, n Must Be Integar Number")
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
