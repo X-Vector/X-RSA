@@ -144,7 +144,7 @@ try:
 except ImportError:
     slowprint("\n[-] Module Not Setup")
 except ValueError:
-    slowprint("\n[-] c,p,q,e Must Be Integar Number")
+    slowprint("\n[-] c,n,e Must Be Integar Number")
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
