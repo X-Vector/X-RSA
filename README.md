@@ -1,4 +1,4 @@
-# X-RSA For RSA Attacks :
+# X-RSA 
 - X-RSA V0.2 contains a many of attack types such as Hasted, Fermat, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack. 
 
 - New Attack Added To X-RSA V0.2 And Fixing Many Error in V0.1
@@ -7,8 +7,8 @@
 
 - Written By [Python]
 
-# Installing and Open Tool :
-1 - install tool : 
+# Installing and Open Tool 
+1 - install tool 
 ```
 git clone https://github.com/X-Vector/X-RSA.git
 ```
@@ -17,11 +17,11 @@ git clone https://github.com/X-Vector/X-RSA.git
 apt install libgmp-dev libmpfr-dev libmpc-dev
 pip install -r requirement.txt
 ```
-3 - Open Tool :
+3 - Open Tool 
 ```
 python Attack.py
 ```
-# Screenshots :
+# Screenshots 
 
 ![X-RSA](https://e.top4top.net/p_1196pglz71.png "X-RSA in Action")
 
