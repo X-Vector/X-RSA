@@ -7,7 +7,7 @@
 - Added [ New Attacks , Factorization Methods ] To X-RSA V0.3  And Fixing Many Error in V0.2
 
 **Why X-RSA ?**
-- X-RSA help you in [CTF, Hacking , Penetration Testing , Decryption]
+- X-RSA help you in [CTF , Penetration Testing , Decryption]
 
 - Written By [ Python 2.7 ]
 
