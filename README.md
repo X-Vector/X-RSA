@@ -1,10 +1,10 @@
 # X-RSA 
 
 **What's X-RSA ?**
-- X-RSA contains a many of attack types such as Hasted, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack.
+- it's a Tool Which contains a many of attack types in RSA such as Hasted, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attacks.
 
 **What's New in X-RSA ?**
-- Added [New Attacks , Factorization Method ] To X-RSA V0.3  And Fixing Many Error in V0.2
+- Added [ New Attacks , Factorization Methods ] To X-RSA V0.3  And Fixing Many Error in V0.2
 
 **Why X-RSA ?**
 - X-RSA help you in [CTF, Hacking , Penetration Testing , Decryption]
@@ -12,8 +12,8 @@
 - Written By [ Python 2.7 ]
 
 
-# Installing and Open Tool 
-1 - install tool 
+# Installing and Running Tool 
+1 - Install Tool 
 ```
 git clone https://github.com/X-Vector/X-RSA.git
 ```
@@ -22,7 +22,7 @@ git clone https://github.com/X-Vector/X-RSA.git
 apt install libgmp-dev libmpfr-dev libmpc-dev
 pip install -r requirement.txt
 ```
-3 - Open Tool 
+3 - Run Tool 
 ```
 python Attack.py
 ```
