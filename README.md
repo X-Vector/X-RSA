@@ -1,11 +1,16 @@
 # X-RSA 
-- X-RSA V0.2 contains a many of attack types such as Hasted, Fermat, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack. 
 
-- New Attack Added To X-RSA V0.2 And Fixing Many Error in V0.1
+**What's X-RSA ?**
+- X-RSA contains a many of attack types such as Hasted, Common Modulus, Chinese Remainder Theorem, Wiener ... etc , and it's still under development and adding other Attack.
 
-- X-RSA helps you in [CTF, Hacking , Penetration Testing , Decryption]
+**What's New in X-RSA ?**
+- Added [New Attacks , Factorization Method ] To X-RSA V0.3  And Fixing Many Error in V0.2
 
-- Written By [Python]
+**Why X-RSA ?**
+- X-RSA help you in [CTF, Hacking , Penetration Testing , Decryption]
+
+- Written By [ Python 2.7 ]
+
 
 # Installing and Open Tool 
 1 - install tool 
@@ -21,9 +26,18 @@ pip install -r requirement.txt
 ```
 python Attack.py
 ```
-# Screenshots 
+# Screenshots
+**1 - X-RSA**
+![X-RSA](https://2.top4top.net/p_1265rgruu1.png)
 
-![X-RSA](https://e.top4top.net/p_1196pglz71.png "X-RSA in Action")
+**2 - X-RSA Attackes**
+![X-RSA](https://3.top4top.net/p_1265d35pz2.png)
+
+**3 - X-RSA Factorization**
+![X-RSA](https://4.top4top.net/p_12653eztj3.png)
 
 - Coded By X-Vector
 - [Facebook](https://www.facebook.com/X.Vector1) - [Linkedin](https://www.linkedin.com/in/x-vector/) - [Twitter](https://twitter.com/@XVector11)
+
+# Reference
+- [Quadratic sieve](https://github.com/skollmann/PyFactorise)
