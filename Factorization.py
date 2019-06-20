@@ -8,7 +8,7 @@ from qs import *
 
 print("""
 [1] - Factordb Factorization \033[92m
-[2] - Fermet Factorization \033[96m
+[2] - Fermat Factorization \033[96m
 [3] - ECM Factorization \033[93m
 [4] - Quadratic sieve Factorization \033[95m 
 [0] - Exit \033[92m
