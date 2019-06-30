@@ -31,10 +31,10 @@ python Attack.py
 ![X-RSA](https://2.top4top.net/p_1265rgruu1.png)
 
 **2 - X-RSA Attackes**
-![X-RSA](https://3.top4top.net/p_1265d35pz2.png)
+![X-RSA](https://3.top4top.net/p_1276y88c71.png)
 
 **3 - X-RSA Factorization**
-![X-RSA](https://4.top4top.net/p_12653eztj3.png)
+![X-RSA](https://1.top4top.net/p_1276dxpcy1.png)
 
 - Coded By X-Vector
 - [Facebook](https://www.facebook.com/X.Vector1) - [Linkedin](https://www.linkedin.com/in/x-vector/) - [Twitter](https://twitter.com/@XVector11)
