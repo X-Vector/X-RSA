@@ -24,7 +24,7 @@ elif check == 1:
 [11] - Attack(c,d,n,e)\033[92m
 [12] - Attack(c,n,e) \033[93m                   [ Multi Prime Number ]
 [13] - Attack(c,e = 3)\033[0m
-[14] - Attack(c1,c2,n1,n2,e) \033[96m            [ Common Exponent ]
+[14] - Attack(c1,c2,n1,n2,e) \033[96m           [ Common Factor ]
 [0] - Exit \033[92m
         """)
     x = int(raw_input(">>> "))
