@@ -69,7 +69,7 @@ elif check == 1:
         import RSA8
     elif x == 14:
         os.system(clear)
-        import RSA_common_exponent
+        import RSA_common_factor
     else:
         exit()
 else:
