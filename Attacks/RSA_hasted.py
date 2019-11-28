@@ -22,12 +22,12 @@ def chinese_remainder(n, a):
     return sum % prod
 
 try:
-    C1 = int(raw_input(">>> c1 = "))
-    C2 = int(raw_input(">>> c2 = "))
-    C3 = int(raw_input(">>> c3 = "))
-    N1 = int(raw_input(">>> n1 = "))
-    N2 = int(raw_input(">>> n2 = "))
-    N3 = int(raw_input(">>> n3 = "))
+    C1 = int(input(">>> c1 = "))
+    C2 = int(input(">>> c2 = "))
+    C3 = int(input(">>> c3 = "))
+    N1 = int(input(">>> n1 = "))
+    N2 = int(input(">>> n2 = "))
+    N3 = int(input(">>> n3 = "))
 
     N = [N1, N2, N3]
     C = [C1, C2, C3]
