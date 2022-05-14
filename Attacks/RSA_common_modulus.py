@@ -32,13 +32,13 @@ try:
     	ct = c1*c2 % n
     	m = int(gmpy2.iroot(ct, g)[0])
     	return m
-    """
+    
     c1 = int(input(">>> c1 = "))
     c2 = int(input(">>> c2 = "))
     e1 = int(input(">>> e1 = "))
     e2 = int(input(">>> e2 = "))
     n = int(input(">>> n = "))
-    """
+  
     Convert(common_modulus(e1, e2, n, c1, c2))
 except ImportError:
     slowprint("\n[-] Module Not Setup")
