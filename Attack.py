@@ -24,7 +24,8 @@ elif check == 1:
 [11] - Attack(c,d,n,e)\033[92m
 [12] - Attack(c,n,e) \033[93m                   [ Multi Prime Number ]
 [13] - Attack(c,e = 3)\033[0m
-[14] - Attack(c1,c2,n1,n2,e) \033[96m            [ Common Factor ]
+[14] - Attack(c1,c2,n1,n2,e) \033[96m           [ Common Factor ]
+[15] - Attack(c,n,e) \033[95m                   [ boneh durfee ]
 [0] - Exit \033[92m
         """)
     x = int(input(">>> "))
@@ -70,6 +71,9 @@ elif check == 1:
     elif x == 14:
         os.system(clear)
         import Attacks.RSA_common_exponent
+    elif x == 15:
+        os.system(clear)
+        import Attacks.RSA_boneh_durfee
     else:
         exit()
 else:
