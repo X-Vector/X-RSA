@@ -4,7 +4,12 @@ banner()
 
 from math import log,sqrt, ceil, floor
 import random
-from fractions import gcd
+
+try:
+    from fractions import gcd
+except:
+    from math import gcd
+
 import sys
 from builtins import ValueError
 
@@ -753,8 +758,12 @@ def product(factors):
 
 def factorise(n):
 
-    if type(n) is long:
-        return "Long"
+    try:
+        if type(n) is long:
+            return "Long"
+    except:
+        pass
+
     if type(n) != int or n < 1:
         return False
 
