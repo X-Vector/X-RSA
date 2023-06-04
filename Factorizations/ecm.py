@@ -34,11 +34,11 @@ def isprime(n, precision=7):
         d //= 2
         s += 1
 
-    for repeat in range(precision):
+    for _ in range(precision):
         a = random.randrange(2, n - 2)
         x = pow(a, d, n)
 
-        if x == 1 or x == n - 1: continue
+        if x in [1, n - 1]: continue
 
         for r in range(s - 1):
             x = pow(x, 2, n)
@@ -57,13 +57,13 @@ def pollard_brent(n):
     g, r, q = 1, 1, 1
     while g == 1:
         x = y
-        for i in range(r):
+        for _ in range(r):
             y = (pow(y, 2, n) + c) % n
 
         k = 0
         while k < r and g==1:
             ys = y
-            for i in range(min(m, r-k)):
+            for _ in range(min(m, r-k)):
                 y = (pow(y, 2, n) + c) % n
                 q = q * abs(x-y) % n
             g = gcd(q, n)

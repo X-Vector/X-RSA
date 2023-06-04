@@ -170,7 +170,7 @@ def primality_test_miller_rabin(a, iterations):
         b = random.randint(2, a - 1)
         j = 0
         z = pow_mod(b, m, a)
-        while not ((j == 0 and z == 1) or z == a - 1):
+        while (j != 0 or z != 1) and z != a - 1:
             if (j > 0 and z == 1 or j + 1 == lb):
                 return False
             j += 1
@@ -376,9 +376,7 @@ def add_column_opt(M_opt, tgt, src):
 
 def find_pivot_column_opt(M_opt, j):
 
-    if M_opt[j] == 0:
-        return None
-    return lowest_set_bit(M_opt[j])
+    return None if M_opt[j] == 0 else lowest_set_bit(M_opt[j])
 
 
 def siqs_solve_matrix_opt(M_opt, n, m):
@@ -456,7 +454,7 @@ def siqs_find_factors(n, perfect_squares, smooth_relations):
     prime_factors = set()
     for square_indices in perfect_squares:
         fact = siqs_factor_from_square(n, square_indices, smooth_relations)
-        if fact != 1 and fact != rem:
+        if fact not in [1, rem]:
             if is_probable_prime(fact):
                 if fact not in prime_factors:
                     prime_factors.add(fact)
@@ -471,9 +469,8 @@ def siqs_find_factors(n, perfect_squares, smooth_relations):
                     factors.append(rem)
                     rem = 1
                     break
-            else:
-                if fact not in non_prime_factors:
-                    non_prime_factors.add(fact)
+            elif fact not in non_prime_factors:
+                non_prime_factors.add(fact)
 
     if rem != 1 and non_prime_factors:
         non_prime_factors.add(rem)
@@ -496,7 +493,7 @@ def siqs_find_more_factors_gcd(numbers):
         for m in numbers:
             if n != m:
                 fact = gcd(n, m)
-                if fact != 1 and fact != n and fact != m:
+                if fact not in [1, n, m]:
                     if fact not in res:
                         res.add(fact)
                     res.add(n // fact)
@@ -534,9 +531,7 @@ def siqs_choose_nf_m(d):
         return 30000, 65536 * 3
     if d <= 88:
         return 50000, 65536 * 3
-    if d <= 94:
-        return 60000, 65536 * 9
-    return 100000, 65536 * 9
+    return (60000, 65536 * 9) if d <= 94 else (100000, 65536 * 9)
 
 
 def siqs_factorise(n):
@@ -602,7 +597,7 @@ def check_factor(n, i, factors):
 def trial_div_init_primes(n, upper_bound):
     global small_primes
     is_prime = [True] * (upper_bound + 1)
-    is_prime[0:2] = [False] * 2
+    is_prime[:2] = [False] * 2
     factors = []
     small_primes = []
     max_i = sqrt_int(upper_bound)
@@ -707,8 +702,7 @@ def check_perfect_power(n):
 
 
 def find_prime_factors(n):
-    perfect_power = check_perfect_power(n)
-    if perfect_power:
+    if perfect_power := check_perfect_power(n):
         factors = [perfect_power[0]]
     else:
         digits = len(str(n))
@@ -719,9 +713,7 @@ def find_prime_factors(n):
 
     prime_factors = []
     for f in set(factors):
-        for pf in find_all_prime_factors(f):
-            prime_factors.append(pf)
-
+        prime_factors.extend(iter(find_all_prime_factors(f)))
     return prime_factors
 
 
@@ -766,9 +758,7 @@ def factorise(n):
 
     factors, rem = trial_div_init_primes(n, 1000000)
 
-    if factors:
-        pass
-    else:
+    if not factors:
         if rem != 1:
             digits = len(str(rem))
         if digits > MAX_DIGITS_POLLARD:

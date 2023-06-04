@@ -27,11 +27,11 @@ try:
     num = int(input(">>> number of n,c pairs = "))
     N = []
     C = []
-    for i in range(num):
-     n = int(input(">>> n = "))
-     c = int(input(">>> c = "))
-     N.append(n)
-     C.append(c)
+    for _ in range(num):
+        n = int(input(">>> n = "))
+        c = int(input(">>> c = "))
+        N.append(n)
+        C.append(c)
     e = len(N)
     a = chinese_remainder(N, C)
     for n, c in zip(N, C):

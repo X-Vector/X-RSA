@@ -19,14 +19,14 @@ if "Linux" in platform.system():
 os.system(clear)
 is_windows = sys.platform.startswith('win')
 
+# Windows deserves coloring too :D
+G = '\033[92m'  # green
+Y = '\033[93m'  # yellow
+B = '\033[94m'  # blue
+R = '\033[91m'  # red
+W = '\033[0m'   # white
 # Console Colors
 if is_windows:
-    # Windows deserves coloring too :D
-    G = '\033[92m'  # green
-    Y = '\033[93m'  # yellow
-    B = '\033[94m'  # blue
-    R = '\033[91m'  # red
-    W = '\033[0m'   # white
     try:
         import win_unicode_console , colorama
         win_unicode_console.enable()
@@ -35,14 +35,6 @@ if is_windows:
     except:
         print("[!] Error: Coloring libraries not installed, no coloring will be used")
         G = Y = B = R = W = G = Y = B = R = W = ''
-
-
-else:
-    G = '\033[92m'  # green
-    Y = '\033[93m'  # yellow
-    B = '\033[94m'  # blue
-    R = '\033[91m'  # red
-    W = '\033[0m'   # white
 
 
 def banner():
