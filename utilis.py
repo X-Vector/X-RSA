@@ -68,8 +68,7 @@ def reduites_fraction_continue(a):
     h1 = 0
     k0 = 0
     k1 = 1
-    count = 0
-    while count < l:
+    for count in range(l):
         h = a[count] * h1 + h0
         h0 = h1
         h1 = h
@@ -77,7 +76,6 @@ def reduites_fraction_continue(a):
         k0 = k1
         k1 = k
         reduites.append((k,h))
-        count += 1
     return (reduites)
 
 def floorSqrt(n):

@@ -16,8 +16,7 @@ def premRSA(n,e,d,c):
     assert bitLenD0 >= bitLenN/2
 
     d = halfdPartialKeyRecoveryAttack(d,2048,4096,n,e)
-    m = pow(c,d,n)
-    return m
+    return pow(c,d,n)
 
 def halfdPartialKeyRecoveryAttack(d0,d0BitSize,nBitSize,n="n",e="e"):
     test = pow(3, e, n)

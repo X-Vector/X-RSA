@@ -16,22 +16,14 @@ try:
         assert b < 0
         assert GCD(a, n) == 1
         res = int(gmpy2.invert(a, n))
-        res = pow(res, b*(-1), n)
-        return res
+        return pow(res, b*(-1), n)
 
     def common_modulus(e1, e2, n, c1, c2):
-    	g, a, b = egcd(e1, e2)
-    	if a < 0:
-    		c1 = neg_pow(c1, a, n)
-    	else:
-    		c1 = pow(c1, a, n)
-    	if b < 0:
-    		c2 = neg_pow(c2, b, n)
-    	else:
-    		c2 = pow(c2, b, n)
-    	ct = c1*c2 % n
-    	m = int(gmpy2.iroot(ct, g)[0])
-    	return m
+        g, a, b = egcd(e1, e2)
+        c1 = neg_pow(c1, a, n) if a < 0 else pow(c1, a, n)
+        c2 = neg_pow(c2, b, n) if b < 0 else pow(c2, b, n)
+        ct = c1*c2 % n
+        return int(gmpy2.iroot(ct, g)[0])
     
     c1 = int(input(">>> c1 = "))
     c2 = int(input(">>> c2 = "))

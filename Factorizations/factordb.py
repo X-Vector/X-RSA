@@ -18,19 +18,13 @@ class FactorDB():
         return self.result
 
     def get_id(self):
-        if self.result:
-            return self.result.json().get("id")
-        return None
+        return self.result.json().get("id") if self.result else None
 
     def get_status(self):
-        if self.result:
-            return self.result.json().get("status")
-        return None
+        return self.result.json().get("status") if self.result else None
 
     def get_factor_from_api(self):
-        if self.result:
-            return   self.result.json().get("factors")
-        return None
+        return self.result.json().get("factors") if self.result else None
 
     def get_factor_list(self):
         """

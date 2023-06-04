@@ -13,7 +13,7 @@ def fermat(n):
           exit()
     p = a+b
     q = a-b
-    print("%sp =%s"%(Y,G),p)
-    print("%sq =%s"%(Y,G),q)
+    print(f"{Y}p ={G}", p)
+    print(f"{Y}q ={G}", q)
 
 

@@ -15,17 +15,16 @@ try:
     e = int(input(">>> e = "))
 
     def wiener(n, e):
-      fc = fraction_continue(e, n)
-      reduites = reduites_fraction_continue(fc)
-      message_clair = random.randint(10**1,10**5)
-      message_chiffre = pow(message_clair, e, n)
-      l = len(reduites)
-      i = 0
-      while i < l and pow(message_chiffre, reduites[i][1], n) != message_clair:
-        i += 1
-      if i != l:
-        return (reduites[i][1])
-      else:
+        fc = fraction_continue(e, n)
+        reduites = reduites_fraction_continue(fc)
+        message_clair = random.randint(10**1,10**5)
+        message_chiffre = pow(message_clair, e, n)
+        l = len(reduites)
+        i = 0
+        while i < l and pow(message_chiffre, reduites[i][1], n) != message_clair:
+          i += 1
+        if i != l:
+            return (reduites[i][1])
         print("[-] Sorry it's Not Wiener Attack\n")
         exit(0)
 

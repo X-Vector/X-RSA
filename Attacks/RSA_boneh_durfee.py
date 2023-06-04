@@ -79,8 +79,8 @@ def remove_unhelpful(BB, monomials, bound, current):
     for ii in range(current, -_sage_const_1 , -_sage_const_1 ):
         # if it is unhelpful:
         if BB[ii, ii] >= bound:
-            affected_vectors = _sage_const_0 
-            affected_vector_index = _sage_const_0 
+            affected_vectors = _sage_const_0
+            affected_vector_index = _sage_const_0
             # let's check if it affects other vectors
             for jj in range(ii + _sage_const_1 , BB.dimensions()[_sage_const_0 ]):
                 # if another vector is affected:
@@ -92,7 +92,7 @@ def remove_unhelpful(BB, monomials, bound, current):
             # level:0
             # if no other vectors end up affected
             # we remove it
-            if affected_vectors == _sage_const_0 :
+            if affected_vectors == _sage_const_0:
                 print("* removing unhelpful vector", ii)
                 BB = BB.delete_columns([ii])
                 BB = BB.delete_rows([ii])
@@ -100,16 +100,14 @@ def remove_unhelpful(BB, monomials, bound, current):
                 BB = remove_unhelpful(BB, monomials, bound, ii-_sage_const_1 )
                 return BB
 
-            # level:1
-            # if just one was affected we check
-            # if it is affecting someone else
-            elif affected_vectors == _sage_const_1 :
-                affected_deeper = True
-                for kk in range(affected_vector_index + _sage_const_1 , BB.dimensions()[_sage_const_0 ]):
-                    # if it is affecting even one vector
-                    # we give up on this one
-                    if BB[kk, affected_vector_index] != _sage_const_0 :
-                        affected_deeper = False
+            elif affected_vectors == _sage_const_1:
+                affected_deeper = all(
+                    BB[kk, affected_vector_index] == _sage_const_0
+                    for kk in range(
+                        affected_vector_index + _sage_const_1,
+                        BB.dimensions()[_sage_const_0],
+                    )
+                )
                 # remove both it if no other vector was affected and
                 # this helpful vector is not helpful enough
                 # compared to our unhelpful one
@@ -142,7 +140,8 @@ def boneh_durfee(pol, modulus, mm, tt, XX, YY):
     """
 
     # substitution (Herrman and May)
-    PR = PolynomialRing(ZZ, names=('u', 'x', 'y',)); (u, x, y,) = PR._first_ngens(3)
+    PR = PolynomialRing(ZZ, names=('u', 'x', 'y',))
+    (u, x, y,) = PR._first_ngens(3)
     Q = PR.quotient(x*y + _sage_const_1  - u) # u = xy + 1
     polZ = Q(pol).lift()
 
@@ -163,19 +162,20 @@ def boneh_durfee(pol, modulus, mm, tt, XX, YY):
             if monomial not in monomials:
                 monomials.append(monomial)
     monomials.sort()
-    
+
     # y-shifts (selected by Herrman and May)
     for jj in range(_sage_const_1 , tt + _sage_const_1 ):
         for kk in range(floor(mm/tt) * jj, mm + _sage_const_1 ):
             yshift = y**jj * polZ(u, x, y)**kk * modulus**(mm - kk)
             yshift = Q(yshift).lift()
             gg.append(yshift) # substitution
-    
+
     # y-shifts list of monomials
     for jj in range(_sage_const_1 , tt + _sage_const_1 ):
-        for kk in range(floor(mm/tt) * jj, mm + _sage_const_1 ):
-            monomials.append(u**kk * y**jj)
-
+        monomials.extend(
+            u**kk * y**jj
+            for kk in range(floor(mm / tt) * jj, mm + _sage_const_1)
+        )
     # construct lattice B
     nn = len(monomials)
     BB = Matrix(ZZ, nn)
@@ -198,7 +198,7 @@ def boneh_durfee(pol, modulus, mm, tt, XX, YY):
     # check if vectors are helpful
     if debug:
         helpful_vectors(BB, modulus**mm)
-    
+
     # check if determinant is correctly bounded
     det = BB.det()
     bound = modulus**(mm*nn)
@@ -213,10 +213,6 @@ def boneh_durfee(pol, modulus, mm, tt, XX, YY):
     else:
         print("det(L) < e^(m*n) (good! If a solution exists < N^delta, it will be found)")
 
-    # display the lattice basis
-    #if debug:
-        #matrix_overview(BB, modulus**mm)
-
     # LLL
     if debug:
         print("optimizing basis of the lattice via LLL, this can take a long time")
@@ -230,34 +226,34 @@ def boneh_durfee(pol, modulus, mm, tt, XX, YY):
     if debug:
         print("looking for independent vectors in the lattice")
     found_polynomials = False
-    
+
     for pol1_idx in range(nn - _sage_const_1 ):
         for pol2_idx in range(pol1_idx + _sage_const_1 , nn):
             # for i and j, create the two polynomials
-            PR = PolynomialRing(ZZ, names=('w', 'z',)); (w, z,) = PR._first_ngens(2)
-            pol1 = pol2 = _sage_const_0 
+            PR = PolynomialRing(ZZ, names=('w', 'z',))
+            (w, z,) = PR._first_ngens(2)
+            pol1 = pol2 = _sage_const_0
             for jj in range(nn):
                 pol1 += monomials[jj](w*z+_sage_const_1 ,w,z) * BB[pol1_idx, jj] / monomials[jj](UU,XX,YY)
                 pol2 += monomials[jj](w*z+_sage_const_1 ,w,z) * BB[pol2_idx, jj] / monomials[jj](UU,XX,YY)
 
             # resultant
-            PR = PolynomialRing(ZZ, names=('q',)); (q,) = PR._first_ngens(1)
+            PR = PolynomialRing(ZZ, names=('q',))
+            (q,) = PR._first_ngens(1)
             rr = pol1.resultant(pol2)
 
-            # are these good polynomials?
             if rr.is_zero() or rr.monomials() == [_sage_const_1 ]:
                 continue
-            else:
-                print("found them, using vectors", pol1_idx, "and", pol2_idx)
-                found_polynomials = True
-                break
+            print("found them, using vectors", pol1_idx, "and", pol2_idx)
+            found_polynomials = True
+            break
         if found_polynomials:
             break
 
     if not found_polynomials:
         print("no independant vectors could be found. This should very rarely happen...")
         return _sage_const_0 , _sage_const_0 
-    
+
     rr = rr(q, q)
 
     # solutions
@@ -290,7 +286,7 @@ try:
     N = int(input(">>> n = "))
     e = int(input(">>> e = "))
     c = int(input(">>> c = "))
-   
+
     # the hypothesis on the private exponent (the theoretical maximum is 0.292)
     delta = _sage_const_p18  # this means that d < N^delta
 
@@ -311,22 +307,10 @@ try:
     #
 
     # Problem put in equation
-    P = PolynomialRing(ZZ, names=('x', 'y',)); (x, y,) = P._first_ngens(2)
+    P = PolynomialRing(ZZ, names=('x', 'y',))
+    (x, y,) = P._first_ngens(2)
     A = int((N+_sage_const_1 )/_sage_const_2 )
     pol = _sage_const_1  + x * (A + y)
-
-    #
-    # Find the solutions!
-    #
-
-    # Checking bounds
-    #if debug:
-        #print("=== checking values ===")
-        #print("* delta:", delta)
-        #print("* delta < 0.292", delta < _sage_const_0p292 )
-        #print("* size of e:", int(log(e)/log(_sage_const_2 )))
-        #print("* size of N:", int(log(N)/log(_sage_const_2 )))
-        #print("* m:", m, ", t:", t)
 
     # boneh_durfee
     if debug:
@@ -336,18 +320,14 @@ try:
     solx, soly = boneh_durfee(pol, e, m, t, X, Y)
 
     # found a solution?
-    if solx > _sage_const_0 :
+    if solx > _sage_const_0:
         print("=== solution found ===")
-        if False:
-            print("x:", solx)
-            print("y:", soly)
-
         d = int(pol(solx, soly) / e)
         print( "private key found:", d)
         print(long_to_bytes(pow(c,d,N)).decode())
     else:
         print("=== no solution was found ===")
-    
+
 except AssertionError:
     slowprint("\n[-] Wrong Data")
 except KeyboardInterrupt:
